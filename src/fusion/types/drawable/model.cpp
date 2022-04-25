@@ -65,4 +65,32 @@ void Model::setMaterialProperty(uint32_t submesh, std::string propertyName, std:
 	);
 }
 
+ModelBuilder *ModelBuilder::parent(Spatial *parent) {
+    return nullptr;
+}
+
+ModelBuilder *ModelBuilder::relativePath(std::string relativePath) {
+    return nullptr;
+}
+
+ModelBuilder *ModelBuilder::orientation(SKMath::quat orientation) {
+    return nullptr;
+}
+
+ModelBuilder *ModelBuilder::origin(SKMath::vec3 origin) {
+    return nullptr;
+}
+
+ModelBuilder *ModelBuilder::scale(SKMath::vec3) {
+    return nullptr;
+}
+
+
+ModelBuilder::ModelBuilder() {
+    //just to prevent use of constructor
+}
+
+void ModelBuilder::deleteBuilder() {
+    delete this;
+}
 } // namespace StardustXRFusion

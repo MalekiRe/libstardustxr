@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <utility>
 
 #include "../spatial/spatial.hpp"
 
@@ -37,6 +38,41 @@ public:
 
 	void setText(std::string text);
 	void setColor(SKMath::color color);
+};
+
+class TextBuilder {
+private:
+    Spatial *_parent = nullptr;
+    std::string _text = "null";
+    float _characterHeight = 2.f;
+    SKMath::vec3 _origin = SKMath::vec3_zero;
+    SKMath::quat _orientation = SKMath::quat_identity;
+    std::string _fontPath;
+    Text::Align _textAlign = Text::Align::TopLeft;
+    SKMath::vec2 _bounds = SKMath::vec2_zero;
+    Text::Fit _fit = Text::Fit::Overflow;
+    Text::Align _boundsAlign = Text::Align::TopLeft;
+    SKMath::color _color = {1,1,1,1};
+    TextBuilder();
+public:
+    static TextBuilder* begin() {
+        return new TextBuilder();
+    }
+    TextBuilder* parent(Spatial *parent);
+    TextBuilder* text(std::string text);
+    TextBuilder* characterHeight(float characterHeight);
+    TextBuilder* origin(SKMath::vec3 origin);
+    TextBuilder* origin(float x, float y, float z);
+    TextBuilder* orientation(SKMath::quat orientation);
+    TextBuilder* orientation(float x, float y, float z);
+    TextBuilder* fontPath(std::string fontPath);
+    TextBuilder* textAlign(Text::Align textAlign);
+    TextBuilder* bounds(SKMath::vec2 bounds);
+    TextBuilder* fit(Text::Fit fit);
+    TextBuilder* boundsAlign(Text::Align boundsAlign);
+    Text build();
+    void deleteBuilder();
+
 };
 
 } // namespace StardustXRFusion
