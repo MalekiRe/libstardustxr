@@ -1,5 +1,5 @@
 #include "text.hpp"
-
+#include "ctext.h"
 #include "../../flex.hpp"
 #include "../../fusion_internal.hpp"
 
@@ -7,6 +7,7 @@ using namespace SKMath;
 
 namespace StardustXRFusion {
 
+//C++ implementation
 Text::Text(Spatial *parent, std::string text, float characterHeight, SKMath::vec3 origin, SKMath::quat orientation, std::string fontPath, Align textAlign, SKMath::vec2 bounds, Fit fit, Align boundsAlign, SKMath::color color) : Spatial(true) {
 //	if(!FileExists(relativePath))
 //		return;
@@ -47,6 +48,8 @@ void Text::setColor(SKMath::color color) {
 		FLEX_ARG(FLEX_COLOR(color))
 	);
 }
+
+
 //TextBuilder Methods
 TextBuilder* TextBuilder::parent(Spatial *parent) {
     this->_parent = parent;

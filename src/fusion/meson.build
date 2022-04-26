@@ -5,6 +5,7 @@ endif
 install_headers(
 	[
 		'fusion.hpp',
+		'fusion.h',
 		'sk_math_util.h',
 		'sk_math.hpp',
 	],

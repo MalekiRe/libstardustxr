@@ -4,7 +4,7 @@
 
 #include "../node.hpp"
 #include "../../sk_math.hpp"
-
+#include "spatial.h"
 namespace StardustXRFusion {
 
 class Spatial : public Node {
@@ -31,6 +31,7 @@ public:
 	void setSpatialParentInPlace(Spatial *space);
 
 	void setZoneable(bool zoneable);
+
 
 protected:
 	Spatial(bool destroyable);

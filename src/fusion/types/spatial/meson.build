@@ -1,6 +1,7 @@
 install_headers(
 	[
                 'spatial.hpp',
+                'spatial.h',
                 'zone.hpp',
 	],
         subdir: 'stardustxr/fusion/types/spatial'

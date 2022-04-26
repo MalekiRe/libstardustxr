@@ -13,9 +13,19 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include "random.hpp"
-
+#include "fusion.h"
+//C-Interface
+spatial *spatial_root = nullptr;
+spatial *get_root() {
+    if(spatial_root == nullptr) {
+        spatial_root = (spatial *)(malloc(sizeof(*spatial_root)));
+        spatial_root->obj = StardustXRFusion::Root();
+    }
+    return spatial_root;
+}
 namespace StardustXRFusion {
 
+//C++ Implementation
 std::vector<uint32_t> usedIDs;
 
 StardustXRFusion::FusionScenegraph *scenegraph = nullptr;
