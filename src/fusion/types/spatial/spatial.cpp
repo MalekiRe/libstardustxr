@@ -196,4 +196,47 @@ void Spatial::setZoneable(bool zoneable) {
 	);
 }
 
+    SpatialBuilder SpatialBuilder::parent(Spatial *parent) {
+        this->_parent = parent;
+        return *this;
+    }
+
+    SpatialBuilder SpatialBuilder::origin(SKMath::vec3 origin) {
+        this->_origin = origin;
+        return *this;
+    }
+
+    SpatialBuilder SpatialBuilder::orientation(SKMath::quat orientation) {
+        this->_orientation = orientation;
+        return *this;
+    }
+
+    SpatialBuilder SpatialBuilder::scale(SKMath::vec3 scale) {
+        this->_scale = scale;
+        return *this;
+    }
+
+    SpatialBuilder SpatialBuilder::translatable(bool translatable) {
+        this->_translatable = translatable;
+        return *this;
+    }
+
+    SpatialBuilder SpatialBuilder::rotatable(bool rotatable) {
+        this->_rotatable = rotatable;
+        return *this;
+    }
+
+    SpatialBuilder SpatialBuilder::scalable(bool scalable) {
+        this->_scalable = scalable;
+        return *this;
+    }
+
+    SpatialBuilder SpatialBuilder::zoneable(bool zoneable) {
+        this->_zoneable = zoneable;
+        return *this;
+    }
+
+    Spatial SpatialBuilder::build() {
+        return {_parent, _origin, _orientation, _scale, _translatable, _rotatable, _scalable, _zoneable};
+    }
 } // namespace StardustXRFusion

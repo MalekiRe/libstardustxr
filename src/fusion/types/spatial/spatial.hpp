@@ -37,4 +37,25 @@ protected:
 	Spatial(bool destroyable);
 };
 
+class SpatialBuilder {
+private:
+    Spatial *_parent;
+    SKMath::vec3 _origin = SKMath::vec3_zero;
+    SKMath::quat _orientation = SKMath::quat_identity;
+    SKMath::vec3 _scale = SKMath::vec3_one;
+    bool _translatable = true;
+    bool _rotatable = true;
+    bool _scalable = true;
+    bool _zoneable = false;
+public:
+    SpatialBuilder parent(Spatial *parent);
+    SpatialBuilder origin(SKMath::vec3 origin);
+    SpatialBuilder orientation(SKMath::quat orientation);
+    SpatialBuilder scale(SKMath::vec3 scale);
+    SpatialBuilder translatable(bool translatable);
+    SpatialBuilder rotatable(bool rotatable);
+    SpatialBuilder scalable(bool scalable);
+    SpatialBuilder zoneable(bool zoneable);
+    Spatial build();
+};
 } // namespace StardustXRFusion
