@@ -55,8 +55,8 @@ private:
     SKMath::color _color = {1,1,1,1};
     TextBuilder();
 public:
-    static TextBuilder* begin() {
-        return new TextBuilder();
+    static TextBuilder begin() {
+        return {};
     }
     TextBuilder* parent(Spatial *parent);
     TextBuilder* text(std::string text);
@@ -71,7 +71,6 @@ public:
     TextBuilder* fit(Text::Fit fit);
     TextBuilder* boundsAlign(Text::Align boundsAlign);
     Text build();
-    void deleteBuilder();
 
 };
 

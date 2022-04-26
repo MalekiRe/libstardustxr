@@ -30,8 +30,8 @@ private:
     SKMath::vec3 _scale = SKMath::vec3_one;
     ModelBuilder();
 public:
-    static ModelBuilder* begin() {
-        return new ModelBuilder();
+    static ModelBuilder begin() {
+        return {};
     }
     void deleteBuilder();
     ModelBuilder* parent(Spatial *parent);

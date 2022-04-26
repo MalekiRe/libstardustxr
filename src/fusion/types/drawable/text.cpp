@@ -102,8 +102,5 @@ TextBuilder::TextBuilder() {
     //private method so you have to use 'begin'
 }
 
-void TextBuilder::deleteBuilder() {
-    delete this;
-}
 
 } // namespace StardustXRFusion
