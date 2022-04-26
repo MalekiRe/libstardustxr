@@ -11,4 +11,18 @@ public:
 	void setSize(SKMath::vec3 size);
 };
 
+class BoxFieldBuilder {
+private:
+    Spatial *_parent;
+    SKMath::vec3 _origin;
+    SKMath::quat _orientation;
+    SKMath::vec3 _size;
+public:
+    BoxFieldBuilder parent(Spatial *parent);
+    BoxFieldBuilder origin(SKMath::vec3 origin);
+    BoxFieldBuilder size(SKMath::vec3 size);
+    BoxFieldBuilder orientation(SKMath::quat orientation);
+    BoxField build();
+};
+
 } // namespace StardustXRFusion

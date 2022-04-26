@@ -22,5 +22,20 @@ SphereField::SphereField(Spatial *parent, SKMath::vec3 origin, float radius) {
 		)
 	);
 }
-
+//Builder
+SphereFieldBuilder SphereFieldBuilder::parent(Spatial *parent) {
+    this->_parent = parent;
+    return *this;
+}
+SphereFieldBuilder SphereFieldBuilder::origin(SKMath::vec3 origin) {
+    this->_origin = origin;
+    return *this;
+}
+SphereFieldBuilder SphereFieldBuilder::radius(float radius) {
+    this->_radius = radius;
+    return *this;
+}
+SphereField SphereFieldBuilder::build() {
+    return {_parent, _origin, _radius};
+}
 } // namespace StardustXRFusion

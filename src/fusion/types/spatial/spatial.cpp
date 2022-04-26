@@ -5,16 +5,13 @@
 #include "spatial.hpp"
 #include "spatial.h"
 using namespace SKMath;
-
-namespace StardustXRFusion {
 //C-Interface
-
 spatial *spatial_create() {
     spatial *s;
-    Spatial *obj;
+    StardustXRFusion::Spatial *obj;
 
     s = (spatial *)malloc(sizeof(*s));
-    obj = new Spatial(Root());
+    obj = new StardustXRFusion::Spatial(StardustXRFusion::Root());
     s->obj = obj;
     return (spatial *)s;
 }
@@ -23,9 +20,10 @@ void spatial_destroy(spatial *s) {
         fprintf(stderr, "error, tried to free null pointer of spatial object\n");
         return;
     }
-    delete static_cast<Spatial *>(s->obj);
+    delete static_cast<StardustXRFusion::Spatial *>(s->obj);
     free(s);
 }
+namespace StardustXRFusion {
 
 
 //C++ Implementation

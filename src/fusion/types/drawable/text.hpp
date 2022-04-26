@@ -53,23 +53,19 @@ private:
     Text::Fit _fit = Text::Fit::Overflow;
     Text::Align _boundsAlign = Text::Align::TopLeft;
     SKMath::color _color = {1,1,1,1};
-    TextBuilder();
 public:
-    static TextBuilder begin() {
-        return {};
-    }
-    TextBuilder* parent(Spatial *parent);
-    TextBuilder* text(std::string text);
-    TextBuilder* characterHeight(float characterHeight);
-    TextBuilder* origin(SKMath::vec3 origin);
-    TextBuilder* origin(float x, float y, float z);
-    TextBuilder* orientation(SKMath::quat orientation);
-    TextBuilder* orientation(float x, float y, float z);
-    TextBuilder* fontPath(std::string fontPath);
-    TextBuilder* textAlign(Text::Align textAlign);
-    TextBuilder* bounds(SKMath::vec2 bounds);
-    TextBuilder* fit(Text::Fit fit);
-    TextBuilder* boundsAlign(Text::Align boundsAlign);
+    TextBuilder parent(Spatial *parent);
+    TextBuilder text(std::string text);
+    TextBuilder characterHeight(float characterHeight);
+    TextBuilder origin(SKMath::vec3 origin);
+    TextBuilder origin(float x, float y, float z);
+    TextBuilder orientation(SKMath::quat orientation);
+    TextBuilder orientation(float x, float y, float z);
+    TextBuilder fontPath(std::string fontPath);
+    TextBuilder textAlign(Text::Align textAlign);
+    TextBuilder bounds(SKMath::vec2 bounds);
+    TextBuilder fit(Text::Fit fit);
+    TextBuilder boundsAlign(Text::Align boundsAlign);
     Text build();
 
 };

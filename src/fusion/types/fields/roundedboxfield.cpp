@@ -24,4 +24,27 @@ RoundedBoxField::RoundedBoxField(Spatial *parent, SKMath::vec3 origin, SKMath::q
 	);
 }
 
+RoundedBoxFieldBuilder RoundedBoxFieldBuilder::parent(Spatial *parent) {
+    this->_parent = parent;
+    return *this;
+}
+
+RoundedBoxFieldBuilder RoundedBoxFieldBuilder::origin(SKMath::vec3 origin) {
+    this->_origin = origin;
+    return *this;
+}
+
+RoundedBoxFieldBuilder RoundedBoxFieldBuilder::orientation(SKMath::quat orientation) {
+    this->_orientation = orientation;
+    return *this;
+}
+
+RoundedBoxFieldBuilder RoundedBoxFieldBuilder::size(SKMath::vec3 size) {
+    this->_size = size;
+    return *this;
+}
+
+RoundedBoxField RoundedBoxFieldBuilder::build() {
+    return {_parent, _origin, _orientation, _size};
+}
 } // namespace StardustXRFusion

@@ -1,5 +1,7 @@
 #include "model.hpp"
 
+#include <utility>
+
 #include "../../flex.hpp"
 #include "../../fusion_internal.hpp"
 
@@ -65,32 +67,32 @@ void Model::setMaterialProperty(uint32_t submesh, std::string propertyName, std:
 	);
 }
 
-ModelBuilder *ModelBuilder::parent(Spatial *parent) {
-    return nullptr;
+ModelBuilder ModelBuilder::parent(Spatial *parent) {
+    this->_parent = parent;
+    return *this;
 }
 
-ModelBuilder *ModelBuilder::relativePath(std::string relativePath) {
-    return nullptr;
+ModelBuilder ModelBuilder::relativePath(std::string relativePath) {
+    this->_relativePath = std::move(relativePath);
+    return *this;
 }
 
-ModelBuilder *ModelBuilder::orientation(SKMath::quat orientation) {
-    return nullptr;
+ModelBuilder ModelBuilder::orientation(SKMath::quat orientation) {
+    this->_orientation = orientation;
+    return *this;
 }
 
-ModelBuilder *ModelBuilder::origin(SKMath::vec3 origin) {
-    return nullptr;
+ModelBuilder ModelBuilder::origin(SKMath::vec3 origin) {
+    this->_origin = origin;
+    return *this;
 }
 
-ModelBuilder *ModelBuilder::scale(SKMath::vec3) {
-    return nullptr;
+ModelBuilder ModelBuilder::scale(SKMath::vec3 scale) {
+    this->_scale = scale;
+    return *this;
+}
+Model ModelBuilder::build() {
+    return Model(_parent, _relativePath, _origin, _orientation, _scale);
 }
 
-
-ModelBuilder::ModelBuilder() {
-    //just to prevent use of constructor
-}
-
-void ModelBuilder::deleteBuilder() {
-    delete this;
-}
 } // namespace StardustXRFusion

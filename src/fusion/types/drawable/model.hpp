@@ -28,17 +28,12 @@ private:
     SKMath::vec3 _origin = SKMath::vec3_zero;
     SKMath::quat _orientation = SKMath::quat_identity;
     SKMath::vec3 _scale = SKMath::vec3_one;
-    ModelBuilder();
 public:
-    static ModelBuilder begin() {
-        return {};
-    }
-    void deleteBuilder();
-    ModelBuilder* parent(Spatial *parent);
-    ModelBuilder* relativePath(std::string relativePath);
-    ModelBuilder* origin(SKMath::vec3 origin);
-    ModelBuilder* orientation(SKMath::quat orientation);
-    ModelBuilder* scale(SKMath::vec3);
-
+    ModelBuilder parent(Spatial *parent);
+    ModelBuilder relativePath(std::string relativePath);
+    ModelBuilder origin(SKMath::vec3 origin);
+    ModelBuilder orientation(SKMath::quat orientation);
+    ModelBuilder scale(SKMath::vec3);
+    Model build();
 };
 } // namespace StardustXRFusion

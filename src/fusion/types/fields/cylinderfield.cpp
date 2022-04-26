@@ -23,5 +23,28 @@ CylinderField::CylinderField(Spatial *parent, SKMath::vec3 origin, SKMath::quat 
 		)
 	);
 }
-
+//Builder
+CylinderFieldBuilder CylinderFieldBuilder::parent(Spatial *parent){
+    this->_parent = parent;
+    return *this;
+}
+CylinderFieldBuilder CylinderFieldBuilder::origin(SKMath::vec3 origin){
+    this->_origin = origin;
+    return *this;
+}
+CylinderFieldBuilder CylinderFieldBuilder::orientation(SKMath::quat orientation){
+    this->_orientation = orientation;
+    return *this;
+}
+CylinderFieldBuilder CylinderFieldBuilder::length(float length){
+    this->_length = length;
+    return *this;
+}
+CylinderFieldBuilder CylinderFieldBuilder::radius(float radius){
+    this->_radius = radius;
+    return *this;
+}
+CylinderField CylinderFieldBuilder::build(){
+    return {_parent, _origin, _orientation, _length, _radius};
+}
 } // namespace StardustXRFusion

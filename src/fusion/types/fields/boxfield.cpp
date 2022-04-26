@@ -32,5 +32,26 @@ void BoxField::setSize(SKMath::vec3 size) {
 		)
 	);
 }
+//Builder
+BoxFieldBuilder BoxFieldBuilder::parent(Spatial *parent) {
+    this->_parent = parent;
+    return *this;
+}
+BoxFieldBuilder BoxFieldBuilder::origin(SKMath::vec3 origin) {
+    this->_origin = origin;
+    return *this;
+}
+BoxFieldBuilder BoxFieldBuilder::size(SKMath::vec3 size) {
+    this->_size = size;
+    return *this;
+}
+BoxFieldBuilder BoxFieldBuilder::orientation(SKMath::quat orientation) {
+    this->_orientation = orientation;
+    return *this;
+}
+BoxField BoxFieldBuilder::build() {
+    return {_parent, _origin, _orientation, _size};
+}
+
 
 } // namespace StardustXRFusion
