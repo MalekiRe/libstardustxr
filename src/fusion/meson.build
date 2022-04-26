@@ -8,6 +8,7 @@ install_headers(
 		'fusion.h',
 		'sk_math_util.h',
 		'sk_math.hpp',
+		'skmathstructs.h'
 	],
 	subdir: 'stardustxr/fusion'
 )

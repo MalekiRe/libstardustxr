@@ -10,11 +10,9 @@ extern "C" {
 
     typedef struct spatial {
         void *obj;
-    }spatial;
-//    typedef struct spatial;
-
-    spatial *spatial_create();
-    void mather_destroy(spatial *s);
+    } spatial;
+    spatial *stardust_spatial_create();
+    void stardust_spatial_destroy(spatial *spatial);
 
 #ifdef __cplusplus
 }

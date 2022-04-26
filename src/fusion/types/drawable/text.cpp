@@ -1,9 +1,32 @@
 #include "text.hpp"
-#include "ctext.h"
 #include "../../flex.hpp"
 #include "../../fusion_internal.hpp"
-
+#include "text.h"
 using namespace SKMath;
+
+//C-Interface
+text *stardust_text_create(spatial *parent, char *str) {
+    text *t;
+    StardustXRFusion::Text *obj;
+    t = (text*)malloc(sizeof(*t));
+    obj = new StardustXRFusion::Text(static_cast<StardustXRFusion::Spatial*>(parent->obj), std::string(str));
+    t->obj = obj;
+    return t;
+}
+void stardust_text_destroy(text *t) {
+    if(t == nullptr) {
+        fprintf(stderr, "error, tried to free null pointer of text object\n");
+        return;
+    }
+    delete static_cast<StardustXRFusion::Text *>(t->obj);
+    free(t);
+}
+void stardust_text_set_text(text *t, char* str) {
+    static_cast<StardustXRFusion::Text *>(t->obj)->setText(std::string(str));
+}
+void stardust_text_set_color(text *t, SKMath::color color) {
+    static_cast<StardustXRFusion::Text *>(t->obj)->setColor(color);
+}
 
 namespace StardustXRFusion {
 

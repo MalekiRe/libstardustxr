@@ -5,6 +5,8 @@
 
 #include "../spatial/spatial.hpp"
 
+
+
 namespace StardustXRFusion {
 
 class Text : public Spatial {

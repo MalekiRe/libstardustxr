@@ -16,12 +16,18 @@
 #include "fusion.h"
 //C-Interface
 spatial *spatial_root = nullptr;
-spatial *get_root() {
+spatial *stardust_get_root() {
     if(spatial_root == nullptr) {
         spatial_root = (spatial *)(malloc(sizeof(*spatial_root)));
         spatial_root->obj = StardustXRFusion::Root();
     }
     return spatial_root;
+}
+bool stardust_setup() {
+    return StardustXRFusion::Setup();
+}
+void stardust_run_event_loop() {
+    StardustXRFusion::RunEventLoop();
 }
 namespace StardustXRFusion {
 
