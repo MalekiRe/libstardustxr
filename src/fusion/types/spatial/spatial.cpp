@@ -5,25 +5,27 @@
 #include "spatial.hpp"
 #include "spatial.h"
 using namespace SKMath;
-//C-Interface
-stardust_spatial *stardust_spatial_create() {
-    stardust_spatial *s;
-    StardustXRFusion::Spatial *obj;
 
-    s = (stardust_spatial *)malloc(sizeof(*s));
-    obj = new StardustXRFusion::Spatial(StardustXRFusion::Root());
+namespace StardustXRFusion {
+//C-Interface
+
+spatial *spatial_create() {
+    spatial *s;
+    Spatial *obj;
+
+    s = (spatial *)malloc(sizeof(*s));
+    obj = new Spatial(Root());
     s->obj = obj;
-    return (stardust_spatial *)s;
+    return (spatial *)s;
 }
-void stardust_spatial_destroy(stardust_spatial *s) {
+void spatial_destroy(spatial *s) {
     if(s == nullptr) {
         fprintf(stderr, "error, tried to free null pointer of spatial object\n");
         return;
     }
-    delete static_cast<StardustXRFusion::Spatial *>(s->obj);
+    delete static_cast<Spatial *>(s->obj);
     free(s);
 }
-namespace StardustXRFusion {
 
 
 //C++ Implementation
@@ -196,47 +198,4 @@ void Spatial::setZoneable(bool zoneable) {
 	);
 }
 
-    SpatialBuilder SpatialBuilder::parent(Spatial *parent) {
-        this->_parent = parent;
-        return *this;
-    }
-
-    SpatialBuilder SpatialBuilder::origin(SKMath::vec3 origin) {
-        this->_origin = origin;
-        return *this;
-    }
-
-    SpatialBuilder SpatialBuilder::orientation(SKMath::quat orientation) {
-        this->_orientation = orientation;
-        return *this;
-    }
-
-    SpatialBuilder SpatialBuilder::scale(SKMath::vec3 scale) {
-        this->_scale = scale;
-        return *this;
-    }
-
-    SpatialBuilder SpatialBuilder::translatable(bool translatable) {
-        this->_translatable = translatable;
-        return *this;
-    }
-
-    SpatialBuilder SpatialBuilder::rotatable(bool rotatable) {
-        this->_rotatable = rotatable;
-        return *this;
-    }
-
-    SpatialBuilder SpatialBuilder::scalable(bool scalable) {
-        this->_scalable = scalable;
-        return *this;
-    }
-
-    SpatialBuilder SpatialBuilder::zoneable(bool zoneable) {
-        this->_zoneable = zoneable;
-        return *this;
-    }
-
-    Spatial SpatialBuilder::build() {
-        return {_parent, _origin, _orientation, _scale, _translatable, _rotatable, _scalable, _zoneable};
-    }
 } // namespace StardustXRFusion
