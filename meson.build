@@ -2,7 +2,7 @@ project('libstardustxr','cpp', default_options : ['cpp_std=c++11'], version: '0.
 
 pkg = import('pkgconfig')
 threads = dependency('threads')
-flatbufferscwrapper = dependency('flatbuffers-c-wrapper')
+flatbuffers = dependency('flatbuffers', version:'>=2.0.6')
 
 common_files = []
 
