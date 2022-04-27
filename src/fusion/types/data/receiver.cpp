@@ -6,21 +6,19 @@
 #include "receiver.h"
 
 //C-Interface
-stardust_pulse_receiver* stardust_pulse_receiver_create(stardust_spatial *parent, stardust_field *field, skmath_vec3 origin, skmath_quat orientation){
-    stardust_pulse_receiver *r;
-
-    r = (stardust_pulse_receiver *)malloc(sizeof(*r));
-    r->obj  = new StardustXRFusion::PulseReceiver(static_cast<StardustXRFusion::Spatial *>(parent->obj), *static_cast<StardustXRFusion::Field *>(field->obj), stardust_convert_skmath_vec3(origin),
-                                              stardust_convert_skmath_quat(orientation));
-    return r;
-}
-void stardust_pulse_receiver_destroy(stardust_pulse_receiver* r) {
-    delete static_cast<StardustXRFusion::PulseReceiver *>(r->obj);
-}
-void stardust_pulse_receiver_set_on_data_received(stardust_pulse_receiver *r, void (*fun)(char*, flex_buff_reference*)) {
-    static_cast<StardustXRFusion::PulseReceiver *>(r->obj)->onDataReceived.swap(
-            reinterpret_cast<std::function<void(std::basic_string<char>, flexbuffers::Reference)> &>(fun));
-}
+//stardust_pulse_receiver* stardust_pulse_receiver_create() {
+//    stardust_pulse_receiver *r;
+//    StardustXRFusion::PulseReceiver *obj;
+//
+//    r = (stardust_pulse_receiver *)malloc(sizeof(*r));
+//    obj = new StardustXRFusion::PulseReceiver();
+//}
+//void stardust_pulse_receiver_destroy(stardust_pulse_receiver* r) {
+//
+//}
+//void stardust_pulse_receiver_set_on_data_received(stardust_pulse_receiver *r, void (*fun)(char*, flex_buffers_reference*, void*)) {
+//
+//}
 
 using namespace SKMath;
 

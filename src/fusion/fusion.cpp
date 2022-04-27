@@ -15,13 +15,31 @@
 #include "random.hpp"
 #include "fusion.h"
 //C-Interface
-spatial *spatial_root = nullptr;
-spatial *get_root() {
+stardust_spatial *spatial_root = nullptr;
+stardust_spatial *stardust_get_root() {
     if(spatial_root == nullptr) {
-        spatial_root = (spatial *)(malloc(sizeof(*spatial_root)));
+        spatial_root = (stardust_spatial *)(malloc(sizeof(*spatial_root)));
         spatial_root->obj = StardustXRFusion::Root();
     }
     return spatial_root;
+}
+void stardust_on_logic_step(void (*fun)(double, double)) {
+    StardustXRFusion::OnLogicStep(fun);
+}
+bool stardust_setup() {
+    return StardustXRFusion::Setup();
+}
+void stardust_run_event_loop() {
+    StardustXRFusion::RunEventLoop();
+}
+void stardust_set_skytext(const char *path) {
+    StardustXRFusion::SetSkytex(path);
+}
+void stardust_set_skylight(const char *path) {
+    StardustXRFusion::SetSkylight(path);
+}
+char *stardust_convert_exe_relative_path(const char *path) {
+    return strdup(StardustXRFusion::ConvertExeRelativePath(path).c_str());
 }
 namespace StardustXRFusion {
 

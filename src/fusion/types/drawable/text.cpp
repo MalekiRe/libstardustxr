@@ -1,9 +1,32 @@
 #include "text.hpp"
-#include "ctext.h"
 #include "../../flex.hpp"
 #include "../../fusion_internal.hpp"
-
+#include "text.h"
 using namespace SKMath;
+
+//C-Interface
+stardust_text *stardust_text_create(stardust_spatial *parent, char *str) {
+    stardust_text *t;
+    StardustXRFusion::Text *obj;
+    t = (stardust_text*)malloc(sizeof(*t));
+    obj = new StardustXRFusion::Text(static_cast<StardustXRFusion::Spatial*>(parent->obj), std::string(str));
+    t->obj = obj;
+    return t;
+}
+void stardust_text_destroy(stardust_text *t) {
+    if(t == nullptr) {
+        fprintf(stderr, "error, tried to free null pointer of text object\n");
+        return;
+    }
+    delete static_cast<StardustXRFusion::Text *>(t->obj);
+    free(t);
+}
+void stardust_text_set_text(stardust_text *t, char* str) {
+    static_cast<StardustXRFusion::Text *>(t->obj)->setText(std::string(str));
+}
+void stardust_text_set_color(stardust_text *t, skmath_color color) {
+    static_cast<StardustXRFusion::Text *>(t->obj)->setColor(stardust_convert_skmath_color(color));
+}
 
 namespace StardustXRFusion {
 
@@ -101,6 +124,9 @@ Text TextBuilder::build() {
     return {_parent, _text, _characterHeight, _origin, _orientation,  _fontPath, _textAlign, _bounds, _fit, _boundsAlign, _color};
 }
 
+Text* TextBuilder::buildRef() {
+    return new Text(_parent, _text, _characterHeight, _origin, _orientation,  _fontPath, _textAlign, _bounds, _fit, _boundsAlign, _color);
+}
 
 
 } // namespace StardustXRFusion

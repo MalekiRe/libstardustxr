@@ -1,16 +1,8 @@
 //
 // Created by malek on 4/26/22.
 //
-#pragma once
-#ifdef __cplusplus
-extern "C" {
-#endif
-    typedef struct stardust_field {
-        void *obj;
-    } stardust_field;
 
+#ifndef BUILD_FIELD_H
+#define BUILD_FIELD_H
 
-
-#ifdef __cplusplus
-}
-#endif
+#endif //BUILD_FIELD_H
