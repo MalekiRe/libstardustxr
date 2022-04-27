@@ -7,10 +7,12 @@
 extern "C" {
 #endif
 
-typedef struct color {
+typedef struct skmath_color {
     float r, g, b, a;
-} color;
-
+} skmath_color;
 #ifdef __cplusplus
+}
+static SKMath::color stardust_convert_skmath_color(skmath_color color) {
+    return {color.r, color.g, color.b, color.a};
 }
 #endif

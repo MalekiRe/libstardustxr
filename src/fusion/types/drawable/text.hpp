@@ -69,6 +69,7 @@ public:
     TextBuilder fit(Text::Fit fit);
     TextBuilder boundsAlign(Text::Align boundsAlign);
     Text build();
+    Text* buildRef();
 
 };
 

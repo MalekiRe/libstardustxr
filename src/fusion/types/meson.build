@@ -1,6 +1,6 @@
 install_headers(
         [
-                'node.hpp',
+                'node.hpp'
 	],
 	subdir: 'stardustxr/fusion/types'
 )

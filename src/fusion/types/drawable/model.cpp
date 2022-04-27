@@ -4,9 +4,37 @@
 
 #include "../../flex.hpp"
 #include "../../fusion_internal.hpp"
+#include "model.h"
 
 using namespace SKMath;
 
+//C-Interface
+stardust_model *stardust_model_create(stardust_spatial *parent, char *str) {
+    stardust_model *m;
+    StardustXRFusion::Model *obj;
+
+    m = (stardust_model *)malloc(sizeof(*m));
+    obj = new StardustXRFusion::Model(static_cast<StardustXRFusion::Model *>(parent->obj), str);
+    m->obj = obj;
+    return (stardust_model *)m;
+}
+void stardust_model_destroy(stardust_model *t) {
+    if(t == nullptr) {
+        fprintf(stderr, "error, tried to free null pointer of model object\n");
+        return;
+    }
+    delete static_cast<StardustXRFusion::Model *>(t->obj);
+    free(t);
+}
+void set_material_property_float(stardust_model *m, int submesh, char* propertyName, float value) {
+    static_cast<StardustXRFusion::Model *>(m->obj)->setMaterialProperty(submesh, propertyName, value);
+}
+void set_material_property_color(stardust_model *m,int submesh, char* propertyName, skmath_color col) {
+    static_cast<StardustXRFusion::Model *>(m->obj)->setMaterialProperty(submesh, propertyName, stardust_convert_skmath_color(col));
+}
+void set_material_property_string(stardust_model *m, int submesh, char* propertyName, char* value) {
+    static_cast<StardustXRFusion::Model *>(m->obj)->setMaterialProperty(submesh, propertyName, value);
+}
 namespace StardustXRFusion {
 
 Model::Model(Spatial *parent, std::string relativePath, SKMath::vec3 origin, SKMath::quat orientation, SKMath::vec3 scale) : Spatial(true) {

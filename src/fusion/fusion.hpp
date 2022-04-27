@@ -17,6 +17,7 @@ Spatial *Root();
 void SetSkytex(std::string path);
 void SetSkylight(std::string path);
 void OnLogicStep(LogicStepMethod method);
+void Shutdown();
 
 std::string ConvertExeRelativePath(std::string path);
 

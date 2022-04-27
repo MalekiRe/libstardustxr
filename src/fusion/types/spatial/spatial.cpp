@@ -6,16 +6,16 @@
 #include "spatial.h"
 using namespace SKMath;
 //C-Interface
-spatial *stardust_spatial_create() {
-    spatial *s;
+stardust_spatial *stardust_spatial_create() {
+    stardust_spatial *s;
     StardustXRFusion::Spatial *obj;
 
-    s = (spatial *)malloc(sizeof(*s));
+    s = (stardust_spatial *)malloc(sizeof(*s));
     obj = new StardustXRFusion::Spatial(StardustXRFusion::Root());
     s->obj = obj;
-    return (spatial *)s;
+    return (stardust_spatial *)s;
 }
-void stardust_spatial_destroy(spatial *s) {
+void stardust_spatial_destroy(stardust_spatial *s) {
     if(s == nullptr) {
         fprintf(stderr, "error, tried to free null pointer of spatial object\n");
         return;

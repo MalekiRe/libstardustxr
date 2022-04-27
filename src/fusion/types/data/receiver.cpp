@@ -3,8 +3,26 @@
 
 #include "../../flex.hpp"
 #include "../../fusion_internal.hpp"
+#include "receiver.h"
+
+//C-Interface
+//stardust_pulse_receiver* stardust_pulse_receiver_create() {
+//    stardust_pulse_receiver *r;
+//    StardustXRFusion::PulseReceiver *obj;
+//
+//    r = (stardust_pulse_receiver *)malloc(sizeof(*r));
+//    obj = new StardustXRFusion::PulseReceiver();
+//}
+//void stardust_pulse_receiver_destroy(stardust_pulse_receiver* r) {
+//
+//}
+//void stardust_pulse_receiver_set_on_data_received(stardust_pulse_receiver *r, void (*fun)(char*, flex_buffers_reference*, void*)) {
+//
+//}
 
 using namespace SKMath;
+
+
 
 namespace StardustXRFusion {
 

@@ -8,11 +8,11 @@
 extern "C" {
 #endif
 
-    typedef struct spatial {
+    typedef struct stardust_spatial {
         void *obj;
-    } spatial;
-    spatial *stardust_spatial_create();
-    void stardust_spatial_destroy(spatial *spatial);
+    } stardust_spatial;
+    stardust_spatial *stardust_spatial_create();
+    void stardust_spatial_destroy(stardust_spatial *spatial);
 
 #ifdef __cplusplus
 }
