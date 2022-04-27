@@ -3,6 +3,9 @@
 
 #include "field.hpp"
 #include "sk_math.hpp"
+#include "field.h"
+
+stardust_field *f = nullptr;
 
 using namespace SKMath;
 

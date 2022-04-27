@@ -28,6 +28,60 @@ void stardust_text_set_color(stardust_text *t, skmath_color color) {
     static_cast<StardustXRFusion::Text *>(t->obj)->setColor(stardust_convert_skmath_color(color));
 }
 
+
+stardust_text_builder *stardust_text_builder_create() {
+    stardust_text_builder *builder;
+    builder = (stardust_text_builder*)malloc(sizeof(*builder));
+    builder->obj = new StardustXRFusion::TextBuilder();
+    return builder;
+}
+void stardust_text_builder_destroy(stardust_text_builder *b) {
+    if(b == nullptr) {
+        fprintf(stderr, "error, tried to free null point of a text builder object\n");
+        return;
+    }
+    delete static_cast<StardustXRFusion::TextBuilder *>(b->obj);
+    free(b);
+}
+stardust_text_builder *stardust_text_builder_parent(stardust_text_builder *b, stardust_spatial *parent) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->parent(static_cast<StardustXRFusion::Spatial *>(parent->obj));
+    return b;
+}
+stardust_text_builder *stardust_text_builder_text(stardust_text_builder *b, const char* text) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->text(text);
+    return b;
+}
+stardust_text_builder *stardust_text_builder_characterHeight(stardust_text_builder *b, float characterHeight) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->characterHeight(characterHeight);
+    return b;
+}
+stardust_text_builder *stardust_text_builder_origin(stardust_text_builder *b, skmath_vec3 vec3) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->origin(stardust_convert_skmath_vec3(vec3));
+    return b;
+}
+stardust_text_builder *stardust_text_builder_orientation(stardust_text_builder *b, skmath_quat quat) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->orientation(stardust_convert_skmath_quat(quat));
+    return b;
+}
+stardust_text_builder *stardust_text_builder_fontPath(stardust_text_builder *b, const char* path) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->fontPath(path);
+}
+stardust_text_builder *stardust_text_builder_textAlign(stardust_text_builder *b, stardust_text_align alignment) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->textAlign(stardustConvertTextAlign(alignment));
+}
+stardust_text_builder *stardust_text_builder_bounds(stardust_text_builder *b, skmath_vec2 bounds) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->bounds(stardust_convert_skmath_vec2(bounds));
+}
+stardust_text_builder *stardust_text_builder_fit(stardust_text_builder *b, stardust_text_fit fit) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->fit(stardustConvertTextFit(fit));
+}
+stardust_text_builder *stardust_text_builder_boundsAlign(stardust_text_builder *b, stardust_text_align boundsAlign) {
+    static_cast<StardustXRFusion::TextBuilder *>(b->obj)->boundsAlign(stardustConvertTextAlign(boundsAlign));
+}
+stardust_text *stardust_text_builder_build(stardust_text_builder *b) {
+    return createStardustTextFromText(static_cast<StardustXRFusion::TextBuilder *>(b->obj)->build());
+}
+
 namespace StardustXRFusion {
 
 //C++ implementation

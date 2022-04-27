@@ -2,6 +2,25 @@
 #include "../../flex.hpp"
 
 #include "boxfield.hpp"
+#include "boxfield.h"
+
+//C-Interface
+stardust_boxfield *stardust_boxfield_create(stardust_spatial *s, skmath_vec3 origin, skmath_quat orientation, skmath_vec3 size) {
+    stardust_boxfield *b;
+    b = (stardust_boxfield *)malloc(sizeof(*b));
+    b->obj = new StardustXRFusion::BoxField(static_cast<StardustXRFusion::Spatial *>(s->obj),
+                                            stardust_convert_skmath_vec3(origin), stardust_convert_skmath_quat(orientation),
+                                            stardust_convert_skmath_vec3(size));
+    return b;
+}
+void stardust_boxfield_destroy(stardust_boxfield *b) {
+    delete static_cast<StardustXRFusion::BoxField *>(b->obj);
+    free(b);
+}
+
+stardust_field *stardust_boxfield_to_field_cast(stardust_boxfield *b) {
+    return reinterpret_cast<stardust_field *>(b);
+}
 
 using namespace SKMath;
 

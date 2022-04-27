@@ -35,5 +35,5 @@ pkg.generate(lib_fusion, filebase: 'stardustxr-fusion', name: 'stardustxr-fusion
 
 fusion = declare_dependency(
 	include_directories: include_directories('.'),
-	link_with: lib_fusion
+	link_with: lib_fusion,
 )
