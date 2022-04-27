@@ -11,6 +11,11 @@ extern "C" {
     spatial *stardust_get_root();
     bool stardust_setup();
     void stardust_run_event_loop();
+    void stardust_set_skytext(const char* path);
+    void stardust_set_skylight(const char *path);
+
+    char* stardust_convert_relative_path(char *path);
+    //TODO::OnLogicalPath
 #ifdef __cplusplus
 }
 #endif

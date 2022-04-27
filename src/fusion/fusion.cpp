@@ -29,6 +29,15 @@ bool stardust_setup() {
 void stardust_run_event_loop() {
     StardustXRFusion::RunEventLoop();
 }
+void stardust_set_skytext(const char *path) {
+    StardustXRFusion::SetSkytex(path);
+}
+void stardust_set_skylight(const char *path) {
+    StardustXRFusion::SetSkylight(path);
+}
+char *stardust_convert_exe_relative_path(const char *path) {
+    return strdup(StardustXRFusion::ConvertExeRelativePath(path).c_str());
+}
 namespace StardustXRFusion {
 
 //C++ Implementation
