@@ -1,7 +1,6 @@
 #include "node.hpp"
 #include "../fusion_internal.hpp"
 
-
 namespace StardustXRFusion {
 
 Node::Node(bool destroyable) : destroyable(destroyable) {}
