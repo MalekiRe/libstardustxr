@@ -121,7 +121,7 @@ void Text::setText(std::string text) {
 void Text::setColor(SKMath::color color) {
 	messenger->sendSignal(
 		getNodePath(),
-		"setText",
+		"setColor",
 		FLEX_ARG(FLEX_COLOR(color))
 	);
 }
