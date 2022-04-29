@@ -22,13 +22,13 @@ void stardust_pulse_receiver_set_on_data_received(stardust_pulse_receiver *r, vo
             reinterpret_cast<std::function<void(std::basic_string<char>, flexbuffers::Reference)> &>(fun));
 }
 
-using namespace SKMath;
+
 
 
 
 namespace StardustXRFusion {
 
-PulseReceiver::PulseReceiver(Spatial *parent, Field &field, SKMath::vec3 origin, SKMath::quat orientation) : Spatial(true) {
+PulseReceiver::PulseReceiver(Spatial *parent, Field &field, Vec3 origin, Quat rotation) : Spatial(true) {
 	nodePath = "/data/receiver";
 	nodeName = GenerateID();
 
@@ -41,7 +41,7 @@ PulseReceiver::PulseReceiver(Spatial *parent, Field &field, SKMath::vec3 origin,
 			FLEX_STRING(field.getNodePath())
 			FLEX_STRING(parent ? parent->getNodePath() : std::string(""))
 			FLEX_VEC3(origin)
-			FLEX_QUAT(orientation)
+			FLEX_QUAT(rotation)
 			FLEX_STRING(std::string(""))
 			FLEX_STRING(nodeName)
 		)
