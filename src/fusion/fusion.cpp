@@ -51,6 +51,7 @@ StardustXRFusion::FusionScenegraph *scenegraph = nullptr;
 StardustXRFusion::Messenger *messenger = nullptr;
 
 Spatial root;
+Spatial hmd;
 
 LogicStepMethod logicMethod;
 
@@ -101,6 +102,8 @@ bool Setup() {
 	);
 	scenegraph->addMethod("logicStep", &FlexDummy);
 
+	hmd.setBackend("", "hmd");
+
 	running = true;
 	return true;
 }
@@ -140,6 +143,9 @@ void Shutdown() {
 
 Spatial *Root() {
 	return &root;
+}
+Spatial *HMD() {
+	return &hmd;
 }
 
 void SetSkytex(std::string path) {
